@@ -13,24 +13,27 @@ class CalculatorButtonPanel extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 4,
-      child: Column(
-        children:
-            buttons.map((row) {
-              return Row(
-                children:
-                    row.map((btnText) {
-                      return Expanded(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children:
+          buttons.map((row) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:
+                  row.map((btnText) {
+                    return Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.all(6.0),
                         child: CalculatorButton(
                           text: btnText,
                           onTap: () => onButtonPressed(btnText),
                         ),
-                      );
-                    }).toList(),
-              );
-            }).toList(),
-      ),
+                      ),
+                    );
+                  }).toList(),
+            );
+          }).toList(),
     );
   }
 }
