@@ -12,7 +12,7 @@ class CalculatorScreen extends StatefulWidget {
 }
 
 class _CalculatorScreenState extends State<CalculatorScreen> {
-  final String headingCalculator = 'Hesap Makinesi';
+  //final String headingCalculator = 'Hesap Makinesi';
   String _displayText = '0';
 
   void _onButtonPressed(String value) {
@@ -24,14 +24,28 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(headingCalculator)),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        /* title: Text(
+          headingCalculator,
+          style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+        ),
+        backgroundColor: Theme.of(context).colorScheme.onSecondaryFixedVariant,
+        toolbarHeight: 100,*/
+      ),
+
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CalculatorDisplayScreen(displayText: _displayText),
           CalculatorAppConstants.defaultHeightBox(),
-          CalculatorButtonPanel(onButtonPressed: _onButtonPressed),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CalculatorButtonPanel(onButtonPressed: _onButtonPressed),
+          ),
         ],
       ),
+      backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
     );
   }
 }
