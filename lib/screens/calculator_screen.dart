@@ -1,3 +1,5 @@
+import 'package:calculator/utils/calculator_app_constants.dart';
+import 'package:calculator/utils/calculator_logic.dart';
 import 'package:calculator/widgets/calculator_button_panel.dart';
 import 'package:calculator/widgets/calculator_display_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,17 +17,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
 
   void _onButtonPressed(String value) {
     setState(() {
-      if (value == 'C') {
-        _displayText = '0';
-      } else if (value == '=') {
-        // İşlem Sonucu Gösterilecek.
-      } else {
-        if (_displayText == '0') {
-          _displayText = value;
-        } else {
-          _displayText += value;
-        }
-      }
+      _displayText = CalculatorLogic.updateDisplay(_displayText, value);
     });
   }
 
@@ -36,12 +28,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       body: Column(
         children: [
           CalculatorDisplayScreen(displayText: _displayText),
-          heightBox(),
+          CalculatorAppConstants.defaultHeightBox(),
           CalculatorButtonPanel(onButtonPressed: _onButtonPressed),
         ],
       ),
     );
   }
-
-  SizedBox heightBox() => SizedBox(height: 10);
 }
