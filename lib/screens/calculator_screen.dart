@@ -1,3 +1,5 @@
+import 'package:calculator/widgets/calculator_button_panel.dart';
+import 'package:calculator/widgets/calculator_display_screen.dart';
 import 'package:flutter/material.dart';
 
 class CalculatorScreen extends StatefulWidget {
@@ -9,49 +11,37 @@ class CalculatorScreen extends StatefulWidget {
 
 class _CalculatorScreenState extends State<CalculatorScreen> {
   final String headingCalculator = 'Hesap Makinesi';
-  final String _displayText = '0';
+  String _displayText = '0';
+
+  void _onButtonPressed(String value) {
+    setState(() {
+      if (value == 'C') {
+        _displayText = '0';
+      } else if (value == '=') {
+        // İşlem Sonucu Gösterilecek.
+      } else {
+        if (_displayText == '0') {
+          _displayText = value;
+        } else {
+          _displayText += value;
+        }
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(headingCalculator)),
       body: Column(
-        children: [DisplayScreen(displayText: _displayText), ButtonPanel()],
+        children: [
+          CalculatorDisplayScreen(displayText: _displayText),
+          heightBox(),
+          CalculatorButtonPanel(onButtonPressed: _onButtonPressed),
+        ],
       ),
     );
   }
-}
 
-class DisplayScreen extends StatelessWidget {
-  final String displayText;
-  const DisplayScreen({super.key, required this.displayText});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      flex: 2,
-      child: Container(
-        alignment: Alignment.bottomRight,
-        padding: const EdgeInsets.all(20),
-        child: Text(
-          displayText,
-          style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
-}
-
-class ButtonPanel extends StatelessWidget {
-  const ButtonPanel({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      flex: 4,
-      child: Container(
-        color: Theme.of(context).colorScheme.primary,
-        child: const Center(child: Text("Buraya butonlar gelecek")),
-      ),
-    );
-  }
+  SizedBox heightBox() => SizedBox(height: 10);
 }
