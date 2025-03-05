@@ -1,3 +1,4 @@
+import 'package:calculator/utils/calculator_app_colors.dart';
 import 'package:calculator/utils/calculator_app_constants.dart';
 import 'package:calculator/utils/calculator_logic.dart';
 import 'package:calculator/widgets/calculator_button_panel.dart';
@@ -24,28 +25,42 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-        /* title: Text(
-          headingCalculator,
-          style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+      backgroundColor: CalculatorAppColors.appBackground,
+      body: SafeArea(
+        child: Column(
+          children: [
+            _buildTopSection(),
+            CalculatorDisplayScreen(displayText: _displayText),
+            CalculatorAppConstants.defaultHeightBox(),
+            CalculatorButtonPanel(onButtonPressed: _onButtonPressed),
+          ],
         ),
-        backgroundColor: Theme.of(context).colorScheme.onSecondaryFixedVariant,
-        toolbarHeight: 100,*/
       ),
-
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          CalculatorDisplayScreen(displayText: _displayText),
-          CalculatorAppConstants.defaultHeightBox(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CalculatorButtonPanel(onButtonPressed: _onButtonPressed),
-          ),
-        ],
-      ),
-      backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
     );
   }
+}
+
+Widget _buildTopSection() {
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        IconButton(
+          icon: Icon(Icons.menu, color: Colors.black54),
+          onPressed: () {
+            // Drawer açma işlemi
+          },
+        ),
+        Switch(
+          value: false,
+          onChanged: (value) {
+            // Tema değişim işlemi
+          },
+          activeColor: Colors.white,
+          inactiveThumbColor: Colors.white,
+        ),
+      ],
+    ),
+  );
 }
