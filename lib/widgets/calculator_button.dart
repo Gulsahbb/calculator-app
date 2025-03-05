@@ -1,50 +1,57 @@
+import 'package:calculator/utils/calculator_app_styles.dart';
 import 'package:flutter/material.dart';
 
 class CalculatorButton extends StatelessWidget {
   final String text;
+  final bool isOperator;
   final VoidCallback onTap;
-  const CalculatorButton({super.key, required this.text, required this.onTap});
+  const CalculatorButton({
+    super.key,
+    required this.text,
+    required this.onTap,
+    this.isOperator = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onTap(),
+      onTap: onTap,
       child: Container(
-        width: 120,
-        height: 120,
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondary,
-          borderRadius: BorderRadius.circular(8.0),
-          boxShadow: [
-            BoxShadow(
-              color: Theme.of(context).colorScheme.secondaryFixedDim,
-              blurRadius: 5,
-              offset: Offset(0, 4),
-            ),
-          ],
-        ),
+        decoration: CalculatorAppStyles.buttonDecoration,
         child: Center(
-          child: Text(text, style: Theme.of(context).textTheme.headlineMedium),
+          child: Text(
+            text,
+            style:
+                isOperator
+                    ? CalculatorAppStyles.operatorTextStyle
+                    : CalculatorAppStyles.numberTextStyle,
+          ),
         ),
       ),
     );
-
-    /*
-    return Padding(
-      padding: EdgeInsets.all(8.0),
+    /*  return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondary,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Theme.of(context).colorScheme.secondaryFixedDim,
+            offset: Offset(1, 2),
+            blurRadius: 5,
+          ),
+        ],
+      ),
       child: ElevatedButton(
-        onPressed: onTap,
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(20),
+          backgroundColor: Theme.of(context).colorScheme.secondary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
         ),
-        child: Text(
-          text,
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
+        onPressed: onTap,
+        child: Text(text, style: Theme.of(context).textTheme.headlineMedium),
       ),
-    );*/
+    );
+*/
   }
 }
