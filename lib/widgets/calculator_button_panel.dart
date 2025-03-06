@@ -12,27 +12,40 @@ class CalculatorButtonPanel extends StatelessWidget {
     ["1", "2", "3", "-"],
     [",", "0", "=", "+"],
   ];*/
-  final buttons = [
-    "C",
-    "()",
-    "%",
-    "^",
-    "7",
-    "8",
-    "9",
-    "/",
-    "4",
-    "5",
-    "6",
-    "x",
-    "1",
-    "2",
-    "3",
-    "-",
-    ",",
-    "0",
-    "=",
-    "+",
+  final List<String> buttons = [
+    'C',
+    '+/-',
+    '%',
+    '^',
+    '7',
+    '8',
+    '9',
+    '÷',
+    '4',
+    '5',
+    '6',
+    '×',
+    '1',
+    '2',
+    '3',
+    '-',
+    ',',
+    '0',
+    '=',
+    '+',
+  ];
+
+  final List<String> operators = [
+    'C',
+    '+/-',
+    '%',
+    '÷',
+    '×',
+    '-',
+    '+',
+    '=',
+    '^',
+    ',',
   ];
   @override
   Widget build(BuildContext context) {
@@ -41,41 +54,21 @@ class CalculatorButtonPanel extends StatelessWidget {
       child: GridView.builder(
         padding: EdgeInsets.all(16),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
-          childAspectRatio: 1,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
+          crossAxisCount: 4, // Sütun sayısı
+          //childAspectRatio: 1,
+          crossAxisSpacing: 16, // Sütunlar arası boşluk
+          mainAxisSpacing: 16, // satırlar arası boşluk
         ),
-        itemCount: 20,
+        itemCount: 20, // item sayısı
         itemBuilder: (context, index) {
+          bool isOperator = operators.contains(buttons[index]);
           return CalculatorButton(
             text: buttons[index],
+            isOperator: isOperator,
             onTap: () => onButtonPressed(buttons[index]),
           );
         },
       ),
     );
-    /* return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children:
-          buttons.map((row) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children:
-                  row.map((btnText) {
-                    return Expanded(
-                      flex: 2,
-                      child: Padding(
-                        padding: const EdgeInsets.all(6.0),
-                        child: CalculatorButton(
-                          text: btnText,
-                          onTap: () => onButtonPressed(btnText),
-                        ),
-                      ),
-                    );
-                  }).toList(),
-            );
-          }).toList(),
-    );*/
   }
 }
