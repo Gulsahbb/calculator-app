@@ -25,11 +25,15 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: CalculatorAppColors.appBackground,
+        toolbarHeight: 70,
+      ),
+      drawer: Drawer(),
       backgroundColor: CalculatorAppColors.appBackground,
       body: SafeArea(
         child: Column(
           children: [
-            _buildTopSection(),
             CalculatorDisplayScreen(displayText: _displayText),
             CalculatorAppConstants.defaultHeightBox(),
             CalculatorButtonPanel(onButtonPressed: _onButtonPressed),
@@ -38,29 +42,4 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       ),
     );
   }
-}
-
-Widget _buildTopSection() {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        IconButton(
-          icon: Icon(Icons.menu, color: Colors.black54),
-          onPressed: () {
-            // Drawer açma işlemi
-          },
-        ),
-        Switch(
-          value: false,
-          onChanged: (value) {
-            // Tema değişim işlemi
-          },
-          activeColor: Colors.white,
-          inactiveThumbColor: Colors.white,
-        ),
-      ],
-    ),
-  );
 }
