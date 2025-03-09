@@ -1,23 +1,12 @@
 import 'package:calculator/utils/calculator_app_colors.dart';
+import 'package:calculator/utils/calculator_app_constants.dart';
 import 'package:flutter/material.dart';
 
 class CalculatorAppStyles {
   static BoxDecoration buttonDecoration({required Color color}) {
     return BoxDecoration(
       color: color,
-      borderRadius: BorderRadius.circular(20),
-      boxShadow: [
-        BoxShadow(
-          color: CalculatorAppColors.buttonShadowLight,
-          offset: const Offset(1, 2),
-          blurRadius: 1,
-        ),
-        BoxShadow(
-          color: CalculatorAppColors.buttonShadowDark,
-          offset: const Offset(1, 2),
-          blurRadius: 1,
-        ),
-      ],
+      borderRadius: CalculatorAppConstants.defaultBorderRadius,
     );
   }
 
@@ -28,19 +17,8 @@ class CalculatorAppStyles {
 
   static final BoxDecoration displayDecoration = BoxDecoration(
     color: CalculatorAppColors.backgroundGreen,
-    borderRadius: BorderRadius.circular(20),
-    boxShadow: [
-      BoxShadow(
-        color: CalculatorAppColors.buttonShadowLight,
-        offset: const Offset(1, 1),
-        blurRadius: 1,
-      ),
-      BoxShadow(
-        color: CalculatorAppColors.buttonShadowDark,
-        offset: const Offset(1, 1),
-        blurRadius: 1,
-      ),
-    ],
+    borderRadius: CalculatorAppConstants.defaultBorderRadius,
+    boxShadow: CalculatorAppConstants.defaultBoxShadow,
   );
   static final TextStyle numberTextStyle = TextStyle(
     color: CalculatorAppColors.textColor,
