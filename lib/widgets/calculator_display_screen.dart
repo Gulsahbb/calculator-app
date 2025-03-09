@@ -1,3 +1,4 @@
+import 'package:calculator/utils/calculator_app_constants.dart';
 import 'package:calculator/utils/calculator_app_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -11,14 +12,22 @@ class CalculatorDisplayScreen extends StatelessWidget {
       flex: 3,
       child: Container(
         alignment: Alignment.centerRight,
-        padding: EdgeInsets.all(20),
-        margin: EdgeInsets.all(16),
+        padding: CalculatorAppConstants.defaultPadding,
+        margin: CalculatorAppConstants.defaultMargin,
         decoration: CalculatorAppStyles.displayDecoration,
-        child: Text(
-          displayText,
-          style: Theme.of(context).textTheme.displayLarge,
-        ),
+        child: _DisplayTextWidget(displayText: displayText),
       ),
     );
+  }
+}
+
+class _DisplayTextWidget extends StatelessWidget {
+  const _DisplayTextWidget({required this.displayText});
+
+  final String displayText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(displayText, style: Theme.of(context).textTheme.displayLarge);
   }
 }
