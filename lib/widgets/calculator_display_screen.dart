@@ -8,16 +8,14 @@ class CalculatorDisplayScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 3,
-      child: Container(
-        alignment: Alignment.centerRight,
-        padding: CalculatorAppConstants.defaultPadding,
-        margin: CalculatorAppConstants.defaultMargin,
-        decoration: CalculatorAppStyles.displayDecoration,
-        child: _DisplayTextWidget(displayText: displayText),
-      ),
-    );
+    return Container(color: Colors.blueGrey);
+    /*  return Container(
+      alignment: Alignment.centerRight,
+      padding: CalculatorAppConstants.defaultPadding,
+      margin: CalculatorAppConstants.defaultMargin,
+      decoration: CalculatorAppStyles.displayDecoration,
+      child: _DisplayTextWidget(displayText: displayText),
+    );*/
   }
 }
 
